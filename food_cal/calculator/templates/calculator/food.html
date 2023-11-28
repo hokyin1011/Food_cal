@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Nutrition Calculator</title>
+    <link href="{% static 'cal/food.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Food Nutrition Calculator</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="{% url 'cal' %}">Add Person</a></li>
+                    <li class="current"></liclass><a href="{% url 'check' %}">Check Person</a></li>
+                    <li class="current"></liclass><a href="{% url 'nutrition' %}">Check Food</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button">Submit</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if food_data %}
+            {% for item in food_data %}
+                <div class="food-item">
+                    <h3>{{ item.name }}</h3>
+                    <h3>Calories:{{ item.calories }}</h3>
+                    <h3>Protein:{{ item.protein_g }}</h3>
+                    <h3>Fat:{{ item.fat_total_g }}</h3>
+                    <h3>Carbohydrates:{{ item.carbohydrates_total_g }}</h3>
+                    <!-- Add other fields as needed -->
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

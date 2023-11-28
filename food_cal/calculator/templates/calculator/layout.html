@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Calculator</title>
+    <link href="{% static 'cal/style.css' %}" rel="stylesheet" />
+
+
+</head>
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1>Food Nutrition Calculator</h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="{% url 'cal' %}">Add Person</a></li>
+                <li><a href="{% url 'check' %}">Check Person</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<body>
+    <h1>Calorie Calculator</h1>
+    {% block body %}
+    {% endblock %}
+
+    <!-- Optionally, you can add JavaScript for client-side validation or calculations -->
+</body>
+</html>
