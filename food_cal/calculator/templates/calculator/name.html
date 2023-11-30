@@ -1,29 +1,11 @@
+
+{% extends "calculator/layout.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calorie Calculator</title>
-    <link href="{% static 'cal/food.css' %}" rel="stylesheet" />
-</head>
-
+{% block content %}
+<link href="{% static 'cal/form.css' %}" rel="stylesheet">
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1>Person</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{% url 'cal' %}">Add Person</a></li>
-                    <li><a href="{% url 'food' %}">Add Food</a></li>
-                    <li class="current"></liclass><a href="{% url 'nutrition' %}">Check Food</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
     <div class="container">
         <ul>
             {% for p in person %}
@@ -41,7 +23,8 @@
             {% endfor %}
         </ul>
     </div>
-    <!-- Optionally, you can add JavaScript for client-side validation or calculations -->
-</body>
+{% endblock content %}
+
+
 
 </html>

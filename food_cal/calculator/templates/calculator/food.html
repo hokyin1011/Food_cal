@@ -1,37 +1,23 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Food Nutrition Calculator</title>
-    <link href="{% static 'cal/food.css' %}" rel="stylesheet" />
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1>Food Nutrition Calculator</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li class="current"><a href="{% url 'cal' %}">Add Person</a></li>
-                    <li class="current"></liclass><a href="{% url 'check' %}">Check Person</a></li>
-                    <li class="current"></liclass><a href="{% url 'nutrition' %}">Check Food</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+{% extends "calculator/layout.html" %}
 
-    <div class="container">
+ {% load static %}
+{% block content %}
+<body>
+   
+
+    <link href="{% static 'cal/form.css' %}" rel="stylesheet">
+    <div class="form-signin">
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="button">Submit</button>
         </form>
-
+    </div>
+    
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
-
+    
         {% if food_data %}
             {% for item in food_data %}
                 <div class="food-item">
@@ -45,5 +31,6 @@
             {% endfor %}
         {% endif %}
     </div>
-</body>
-</html>
+    
+</body>    
+{% endblock content %}

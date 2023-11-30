@@ -5,6 +5,9 @@ from django import forms
 from django.shortcuts import render
 from matplotlib import pyplot as plt
 import requests
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+
 
 person = []
 food=[]
@@ -79,11 +82,13 @@ def add(request):
     return render(request, "calculator/index.html", {"form": form})
 
 
-def check(request):
+def checkpeople(request):
   
     return render(request, 'calculator/name.html', {'person': person})
 
-
+def checkfood(request):
+  
+    return render(request, 'calculator/nutrition.html')
 
 
 def lookup(request):
@@ -110,3 +115,18 @@ def lookup(request):
         form = NewFoodForm()
 
     return render(request, "calculator/food.html", {'form': form, 'food': food})
+
+
+
+def signup(request):
+    if request.method == "POST":
+        username = request.POST.get
+
+        return render(request, 'user/login.html')
+def signin(request):
+    return render(request, 'user/login.html')
+
+def signout(request):
+    return render(request, 'user/login.html')
+
+
